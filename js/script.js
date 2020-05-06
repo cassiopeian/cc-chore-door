@@ -85,6 +85,21 @@ doorImage3.onclick = () => {
   }
 };
 
+// the startButton click event relies on the startRound function
+startButton.onclick = () => {
+    startRound();
+};
+
+// this resets the game values
+const startRound = () => {
+    doorImage1.src = closedDoorPath;
+    doorImage2.src = closedDoorPath;
+    doorImage3.src = closedDoorPath;
+    numClosedDoors = 3;
+    startButton.innerHTML = 'Good Luck!';
+    currentlyPlaying = true;
+  };
+
 // this helps the playDoor function end the game
 const gameOver = (status) => {
   if (status === 'win') {
