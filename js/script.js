@@ -16,6 +16,9 @@ let openDoor1;
 let openDoor2;
 let openDoor3;
 
+// the click functions depend on this being true, so the doors become unclickable once the gameOver function triggers the false state
+let currentlyPlaying = true;
+
 // this checks to see if the bot door has been clicked
 const isBot = (door) => {
   if (door.src === botDoorPath) {
@@ -64,19 +67,19 @@ const randomChoreDoorGenerator = () => {
 
 // these click functions rely on the isClicked, randomChoreDoorGenerator, and playDoor functions
 doorImage1.onclick = () => {
-  if (!isClicked(doorImage1)) {
+  if (currentlyPlaying === true && !isClicked(doorImage1)) {
     doorImage1.src = openDoor1;
     playDoor(doorImage1);
   }
 };
 doorImage2.onclick = () => {
-  if (!isClicked(doorImage2)) {
+  if (currentlyPlaying === true && !isClicked(doorImage2)) {
     doorImage2.src = openDoor2;
     playDoor(doorImage2);
   }
 };
 doorImage3.onclick = () => {
-  if (!isClicked(doorImage3)) {
+  if (currentlyPlaying === true && !isClicked(doorImage3)) {
     doorImage3.src = openDoor3;
     playDoor(doorImage3);
   }
@@ -89,6 +92,7 @@ const gameOver = (status) => {
   } else {
     startButton.innerHTML = 'Game over! Play again?'
   }
+  currentlyPlaying = false;
 };
 
 randomChoreDoorGenerator();
